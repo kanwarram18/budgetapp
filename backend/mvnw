@@ -1,0 +1,39 @@
+#!/bin/sh
+# Maven Wrapper - downloads Maven if not present and runs it
+# This is a simplified version. For the full wrapper, run:
+#   mvn wrapper:wrapper -Dmaven=3.9.9
+# inside the backend directory after installing Maven locally once,
+# OR download the full wrapper from https://maven.apache.org/wrapper/
+
+set -e
+
+# Check if Maven is available
+if command -v mvn >/dev/null 2>&1; then
+    exec mvn "$@"
+fi
+
+# Check if JAVA_HOME is set
+if [ -z "$JAVA_HOME" ]; then
+    JAVACMD="java"
+else
+    JAVACMD="$JAVA_HOME/bin/java"
+fi
+
+WRAPPER_JAR=".mvn/wrapper/maven-wrapper.jar"
+WRAPPER_URL="https://repo.maven.apache.org/maven2/org/apache/maven/wrapper/maven-wrapper/3.3.2/maven-wrapper-3.3.2.jar"
+
+if [ ! -f "$WRAPPER_JAR" ]; then
+    echo "Downloading Maven Wrapper..."
+    if command -v curl >/dev/null 2>&1; then
+        curl -sS -o "$WRAPPER_JAR" "$WRAPPER_URL"
+    elif command -v wget >/dev/null 2>&1; then
+        wget -q -O "$WRAPPER_JAR" "$WRAPPER_URL"
+    else
+        echo "ERROR: Cannot download Maven Wrapper. Install curl or wget, or install Maven manually."
+        exit 1
+    fi
+fi
+
+exec "$JAVACMD" \
+    -jar "$WRAPPER_JAR" \
+    "$@"

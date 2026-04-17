@@ -1,0 +1,33 @@
+# === Secrets - NEVER commit these ===
+.env
+.env.local
+.env.*.local
+*.pem
+*.key
+secrets/
+
+# === Backend (Java/Maven) ===
+backend/target/
+backend/.mvn/wrapper/maven-wrapper.jar
+*.class
+*.jar
+*.war
+*.ear
+*.log
+hs_err_pid*
+
+# === Frontend (Node/Vite) ===
+frontend/node_modules/
+frontend/dist/
+frontend/.vite/
+
+# === IDEs ===
+.idea/
+*.iml
+*.iws
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db

@@ -1,0 +1,14 @@
+package com.kanwarram18.budgetapp;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
+
+@SpringBootTest
+@ActiveProfiles("test")
+class BudgetAppApplicationTests {
+
+    @Test
+    void contextLoads() {
+    }
+}
